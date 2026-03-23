@@ -1,3 +1,3 @@
-module pomplan
+module tombox
 
 go 1.26.1
