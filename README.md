@@ -1,4 +1,4 @@
-# Tombox: a customizable Pomodoro/Timeboxing utility
+# TomatoBox: a customizable Pomodoro/Timeboxing utility
 
 Unsatisfied with existing pomodoro apps, I'd like to write my own. In other apps I don't have quite the control I would like around setting activity duration, and how breaks/long breaks are distributed. One app in particular seems to have gotten stuck in setting long breaks only... without a clue why.
 
