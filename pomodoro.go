@@ -12,10 +12,11 @@ const HR = 60 * MIN
 
 func main() {
 	t := defaultRunTable()
+	events := []string{}
 	for _, item := range t.Activities {
-		fmt.Printf("%s for %v (%v wrap up)\n", item.Title, item.Duration, item.Wrapup)
+		events = append(events, fmt.Sprintf("%s for %v (%v wrap up)", item.Title, item.Duration, item.Wrapup))
 	}
-	iface.Run() // Eventually, this should display the above table
+	iface.Run(events)
 }
 
 func defaultRunTable() act.ActivityTable {

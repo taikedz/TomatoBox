@@ -10,4 +10,4 @@ go run pomodoro.go
 
 ## Build distributable
 
-Use the `./build.sh` script to produce a trimmed, no-dependency binary.
+Use the `./build.sh` script to produce a trimmed binary. It will typically depend on libc as Fyne has this particular dependency.
