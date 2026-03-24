@@ -5,7 +5,7 @@
 Structured so that there only need to run against one top file:
 
 ```sh
-go run pomodoro.go
+go run tombox.go
 ```
 
 ## Build distributable

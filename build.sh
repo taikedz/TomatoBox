@@ -3,4 +3,4 @@
 HERE="$(dirname "$0")"
 cd "$HERE"
 
-go build -trimpath -o bin/pomodoro pomodoro.go
+go build -trimpath -o bin/tombox tombox.go
