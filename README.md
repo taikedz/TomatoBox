@@ -70,11 +70,13 @@ This can allow something like this to be quickly built
 | Run-type = single  |
 +--------------------+
 
-Type `Ctrl + Enter` to add a new task below, type `Shift + Enter` to add a new task above
-Type `Ctrl + Bksp` to remove the line, type `Ctrl + Shift + Bksp` to clear the table
-Type `Ctrl + S` to save the table to a new file, Type `Ctrl + O` to load a saved table
-Type `Ctrl + Shift + C` to select a sequence to copy, then press `Ctrl + Enter` to add a copy below, press `Esc` to cancel.
-Use `Alt + Up/Down` to move current item up or down in the list
+[?] (Help)
+ |
+ +-|Type `Ctrl + Enter` to add a new task below, type `Shift + Enter` to add a new task above
+   |Type `Ctrl + Bksp` to remove the line, type `Ctrl + Shift + Bksp` to clear the table
+   |Type `Ctrl + S` to save the table to a new file, Type `Ctrl + O` to load a saved table
+   |Type `Ctrl + Shift + C` to select a sequence to copy, then press `Ctrl + Enter` to add a copy below, press `Esc` to cancel.
+   |Use `Alt + Up/Down` to move current item up or down in the list
 ```
 
 In the run view, the normal table can be reinstated by choosing to "Clear custom table."
