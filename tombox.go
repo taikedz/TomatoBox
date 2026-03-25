@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	act "tombox/activity"
 	"tombox/iface"
 )
@@ -13,12 +12,7 @@ const HR = 60 * MIN
 func main() {
 	default_run_table := defaultRunTable()
 
-	events := []string{}
-	for _, item := range default_run_table.Activities {
-		events = append(events, fmt.Sprintf("%s for %v (%v wrap up)", item.Title, item.Duration, item.Wrapup))
-	}
-
-	iface.Run(events)
+	iface.Run(default_run_table)
 }
 
 func defaultRunTable() act.ActivityTable {
