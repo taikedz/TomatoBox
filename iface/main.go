@@ -37,7 +37,7 @@ func Run(titles []string) {
 	}
 
 	// After briefly studying https://docs.fyne.io/container/box/
-	content := container.New(layout.NewVBoxLayout(), ctext...)
+	content := container.New(layout.NewGridLayout(3), ctext...)
 
 	window.SetContent(content)
 	window.ShowAndRun()
