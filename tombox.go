@@ -11,11 +11,13 @@ const MIN = 60 * SEC
 const HR = 60 * MIN
 
 func main() {
-	t := defaultRunTable()
+	default_run_table := defaultRunTable()
+
 	events := []string{}
-	for _, item := range t.Activities {
+	for _, item := range default_run_table.Activities {
 		events = append(events, fmt.Sprintf("%s for %v (%v wrap up)", item.Title, item.Duration, item.Wrapup))
 	}
+
 	iface.Run(events)
 }
 

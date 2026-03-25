@@ -12,6 +12,7 @@ We want a few ones:
 
 import (
 	"image/color"
+	"strings"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
@@ -20,14 +21,19 @@ import (
 	"fyne.io/fyne/v2/layout"
 )
 
-func Run(strings []string) {
+func Run(titles []string) {
 	myApp := app.New()
 	window := myApp.NewWindow("TomatoBox")
 
 	var ctext []fyne.CanvasObject
 
-	for _, text := range strings {
+	for _, text := range titles {
 		ctext = append(ctext, canvas.NewText(text, color.Opaque))
+		if strings.Contains(strings.ToLower(text), "break") {
+			space := layout.NewSpacer()
+			space.Resize(fyne.NewSize(100.0, 100.0)) // no effect
+			ctext = append(ctext, space)
+		}
 	}
 
 	// After briefly studying https://docs.fyne.io/container/box/
