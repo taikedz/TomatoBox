@@ -13,6 +13,7 @@ We want a few ones:
 import (
 	"fmt"
 	"image/color"
+	"time"
 
 	act "tombox/activity"
 
@@ -21,15 +22,39 @@ import (
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
+	"fyne.io/fyne/v2/widget"
 )
+
+// WIP - following https://www.youtube.com/watch?v=vSDtHyBvnXE
+func updateContent(display *widget.Label) {
+	display.SetText("new value")
+}
+
+func runActivities(display *widget.Label, table act.ActivityTable) {
+	for _, activity := range table.Activities {
+		countdown := activity.Duration
+		for countdown >= 0 {
+			display.SetText(fmt.Sprintf("%s : %s", activity.Title, countdown))
+
+			time.Sleep(1 * time.Second)
+			countdown -= 1
+		}
+	}
+
+	println("DONE----")
+}
 
 func Run(table act.ActivityTable) {
 	myApp := app.New()
 	window := myApp.NewWindow("TomatoBox")
 
-	content := gridInGrid(table)
+	display := widget.NewLabel("")
+	window.SetContent(display)
 
-	window.SetContent(content)
+	go runActivities(display, table)
+
+	// content := gridInGrid(table)
+
 	window.ShowAndRun()
 
 }
@@ -46,6 +71,9 @@ func gridInGrid(table act.ActivityTable) *fyne.Container {
 	return cont
 }
 
+/*
+Convert a sequence of strings into fyne Text structs.
+*/
 func fText(text ...string) []fyne.CanvasObject {
 	var things []fyne.CanvasObject
 	for _, item := range text {
