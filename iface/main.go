@@ -31,17 +31,30 @@ func updateContent(display *widget.Label) {
 }
 
 func runActivities(display *widget.Label, table act.ActivityTable) {
-	for _, activity := range table.Activities {
-		countdown := activity.Duration
-		for countdown >= 0 {
-			display.SetText(fmt.Sprintf("%s : %s", activity.Title, countdown))
+	for true {
+		for _, activity := range table.Activities {
+			countdown := activity.Duration
+			for countdown >= 0 {
+				fyne.Do(func() {
+					display.SetText(fmt.Sprintf("%s : %s", activity.Title, countdown))
+					// content := gridInGrid(table, 2) // display this underneath
 
-			time.Sleep(1 * time.Second)
-			countdown -= 1
+					display.Refresh()
+				})
+				time.Sleep(1 * time.Second)
+				countdown -= 1
+			}
+		}
+
+		if table.Runmode == act.Stop {
+			break
 		}
 	}
 
-	println("DONE----")
+	fyne.Do(func() {
+		display.SetText("Finished!")
+		display.Refresh()
+	})
 }
 
 func Run(table act.ActivityTable) {
@@ -53,20 +66,25 @@ func Run(table act.ActivityTable) {
 
 	go runActivities(display, table)
 
-	// content := gridInGrid(table)
-
 	window.ShowAndRun()
 
 }
 
-func gridInGrid(table act.ActivityTable) *fyne.Container {
+func gridInGrid(table act.ActivityTable, highlight int) *fyne.Container {
 	// Check https://docs.fyne.io/explore/layouts/
 	cont := container.New(layout.NewGridLayout(4), fText("Title", "Duration", "Wrap-up", "Auto run")...)
-	for _, item := range table.Activities {
-		cont.Add(fText(item.Title)[0])
-		cont.Add(fText(item.Duration.String())[0])
-		cont.Add(fText(item.Wrapup.String())[0])
-		cont.Add(fText(fmt.Sprintf("%v", item.Auto))[0])
+	tcolor := color.Opaque
+
+	for n, item := range table.Activities {
+		var hcolor color.Color = tcolor
+		if n == highlight {
+			hcolor = color.RGBA{200, 0, 200, 0}
+		}
+		// fmt.Printf("--> %v\n", hcolor)
+		cont.Add(canvas.NewText(item.Title, hcolor))
+		cont.Add(canvas.NewText(item.Duration.String(), hcolor))
+		cont.Add(canvas.NewText(item.Wrapup.String(), hcolor))
+		cont.Add(canvas.NewText(fmt.Sprintf("%v", item.Auto), hcolor))
 	}
 	return cont
 }

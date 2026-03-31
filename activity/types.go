@@ -9,8 +9,8 @@ type Activity struct {
 type RunMode int
 
 const (
-	Loop RunMode = iota
-	Stop
+	Stop RunMode = iota
+	Loop
 )
 
 type ActivityTable struct {
